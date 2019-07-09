@@ -1,6 +1,7 @@
 import json
 import os
-import datetime
+from datetime import datetime, timedelta
+import sys
 
 
 def is_number(s):
@@ -88,9 +89,25 @@ class Questionare():
         f.close()
 
 def main():
-    d = datetime.datetime.today()
     dirpath = '/Users/narush/data-driven'
     questionare = Questionare(dirpath + "/questions.txt")
-    questionare.record_questonare(dirpath + "/answers/" + str(d) + ".txt")
+
+    if len(sys.argv) == 1:
+        # be default, do it for today
+        date = (datetime.now()).strftime('%Y-%m-%d')
+        questionare.record_questonare("{}/answers/{}.txt".format(dirpath, date))
+    elif sys.argv[1] == 'add':
+        # add a new question
+        while True:
+            new_question = input("New question: ")
+            options = input("Options (; delimited): ").split(";")
+            for i in range(len(options)):
+                options[i] = options[i].strip()
+            questionare.add_question(new_question, options)
+    else:
+        if not is_number(sys.argv[1]) or float(sys.argv[1]) > 0:
+            raise Exception("Usage: must be a non-positive number (default 0)")
+        date = (datetime.now() + timedelta(float(sys.argv[1]))).strftime('%Y-%m-%d')
+        questionare.record_questonare("{}/answers/{}.txt".format(dirpath, date))
 
 main()
