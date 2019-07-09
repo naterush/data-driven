@@ -93,6 +93,4 @@ def main():
     questionare = Questionare(dirpath + "/questions.txt")
     questionare.record_questonare(dirpath + "/answers/" + str(d) + ".txt")
 
-# User functions
-
 main()
