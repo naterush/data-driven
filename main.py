@@ -1,5 +1,7 @@
 import json
 import os
+import datetime
+
 
 def is_number(s):
     try:
@@ -69,18 +71,18 @@ class Questionare():
             answers[question['question_text']] = self.ask_question(question)
         return answers
 
-    def record_questonare(self):
+    def record_questonare(self, save_as):
         answers = self.start_questionare()
         new_json = json.dumps(answers, indent=4)
-        f = open("today.txt", "w+")
+        f = open(save_as, "w+")
         f.write(new_json)
         f.close()
 
 def main():
-    dirpath = os.getcwd()
+    d = datetime.datetime.today()
+    dirpath = '/Users/narush/data-driven'
     questionare = Questionare(dirpath + "/questions.txt")
-    questionare.add_question("How happy are you?", ["1-5"])
-    print(questionare.record_questonare())
+    questionare.record_questonare(dirpath + "/answers/" + str(d) + ".txt")
 
 # User functions
 
