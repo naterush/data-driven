@@ -1,8 +1,0 @@
-[
-    {
-        "question_text": "How happy were you today?",
-        "options": [
-            "1-5"
-        ]
-    }
-]
