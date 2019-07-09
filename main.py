@@ -1,6 +1,17 @@
 import json
 import os
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+def get_range(options):
+    minimum = float(options[0].split("-")[0])
+    maximum = float(options[0].split("-")[1])
+    return minimum, maximum
 
 class Questionare():
 
@@ -29,7 +40,7 @@ class Questionare():
                 print("Cannot question that already exists")
                 return
         self.questions.append({'question_text' : question_text, 'options': options})
-        new_json = json.dumps(self.questions)
+        new_json = json.dumps(self.questions, indent=4)
         f = open(self.file_path, "w+")
         f.write(new_json)
         f.close()
@@ -37,8 +48,17 @@ class Questionare():
     def ask_question(self, question):
         print("{} \noptions: {}".format(question['question_text'], question['options']))
         answer = input(":")
+
+        # check it's valid, given the options
         if any(question['options']):
-            if answer not in question['options']:
+            if is_number(answer):
+                # check if it's in the range
+                minimum, maximum = get_range(question['options'])
+                number = float(answer)
+                if number < minimum or number > maximum:
+                    print("Invalid response: must be an option")
+                    return self.ask_question(question)
+            elif answer not in question['options']:
                 print("Invalid response: must be an option")
                 return self.ask_question(question)
         return answer
@@ -49,13 +69,18 @@ class Questionare():
             answers[question['question_text']] = self.ask_question(question)
         return answers
 
+    def record_questonare(self):
+        answers = self.start_questionare()
+        new_json = json.dumps(answers, indent=4)
+        f = open("today.txt", "w+")
+        f.write(new_json)
+        f.close()
 
 def main():
     dirpath = os.getcwd()
     questionare = Questionare(dirpath + "/questions.txt")
-    print(questionare.questions)
-    questionare.add_question("Hello?", ["no", "yes"])
-    print(questionare.start_questionare())
+    questionare.add_question("How happy are you?", ["1-5"])
+    print(questionare.record_questonare())
 
 # User functions
 

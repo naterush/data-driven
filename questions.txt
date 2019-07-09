@@ -1,1 +1,8 @@
-[{"question_text": "Hello?", "options": ["no", "yes"]}]
+[
+    {
+        "question_text": "How happy are you?",
+        "options": [
+            "1-5"
+        ]
+    }
+]
