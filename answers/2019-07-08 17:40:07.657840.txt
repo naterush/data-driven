@@ -1,3 +1,0 @@
-{
-    "How happy are you?": "1"
-}

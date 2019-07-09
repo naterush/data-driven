@@ -1,8 +1,93 @@
 [
     {
-        "question_text": "How happy are you?",
+        "question_text": "How happy were you today?",
         "options": [
             "1-5"
+        ]
+    },
+    {
+        "question_text": "How anxious were you today?",
+        "options": [
+            "1-5"
+        ]
+    },
+    {
+        "question_text": "What time did you go to sleep?",
+        "options": [
+            "0-24"
+        ]
+    },
+    {
+        "question_text": "What time did you wake up?",
+        "options": [
+            "0-24"
+        ]
+    },
+
+    {
+        "question_text": "Did you bring your phone/computer into your room at night?",
+        "options": [
+            "yes", "no"
+        ]
+    },
+    {
+        "question_text": "Did you use your phone/computer at night?",
+        "options": [
+            "yes", "no"
+        ]
+    },
+    {
+        "question_text": "How many hours did you spend on the computer today?",
+        "options": [
+            "0-24"
+        ]
+    },
+    {
+        "question_text": "How many hours did you spend on the phone today?",
+        "options": [
+            "0-24"
+        ]
+    },
+    {
+        "question_text": "How many hours did you spend with family today?",
+        "options": [
+            "0-24"
+        ]
+    },
+    {
+        "question_text": "How many hours did you spend with friends today?",
+        "options": [
+            "0-24"
+        ]
+    },
+    {
+        "question_text": "How many hours of exercise did you do today?",
+        "options": [
+            "0-24"
+        ]
+    },
+    {
+        "question_text": "What time did you exercise?",
+        "options": [
+            "0-24"
+        ]
+    },
+    {
+        "question_text": "What type of exercise did you do?",
+        "options": [
+            "run", "climb", "swim", "walk", "hike"
+        ]
+    },
+    {
+        "question_text": "How many hours did you travel today?",
+        "options": [
+            "0-24"
+        ]
+    },
+    {
+        "question_text": "How much alone time did you have today?",
+        "options": [
+            "0-24"
         ]
     }
 ]

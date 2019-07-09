@@ -15,6 +15,21 @@ def get_range(options):
     maximum = float(options[0].split("-")[1])
     return minimum, maximum
 
+def valid_answer(answer, question):
+    if any(question['options']):
+            if is_number(answer):
+                # check if it's in the range
+                try:
+                    minimum, maximum = get_range(question['options'])
+                except:
+                    return False
+                number = float(answer)
+                if number < minimum or number > maximum:
+                    return False
+            elif answer not in question['options']:
+                return False
+    return True
+
 class Questionare():
 
     def __init__(self, file_path):
@@ -49,21 +64,15 @@ class Questionare():
 
     def ask_question(self, question):
         print("{} \noptions: {}".format(question['question_text'], question['options']))
-        answer = input(":")
+        answers = input(":").split(";")
 
         # check it's valid, given the options
-        if any(question['options']):
-            if is_number(answer):
-                # check if it's in the range
-                minimum, maximum = get_range(question['options'])
-                number = float(answer)
-                if number < minimum or number > maximum:
-                    print("Invalid response: must be an option")
-                    return self.ask_question(question)
-            elif answer not in question['options']:
-                print("Invalid response: must be an option")
+        for answer in answers:
+            answer = answer.strip()
+            if not valid_answer(answer, question):
+                print("Invalid answer: must be from {}".format(question['options']))
                 return self.ask_question(question)
-        return answer
+        return "{}".format(answers)
 
     def start_questionare(self):
         answers = dict()
