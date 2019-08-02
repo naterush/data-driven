@@ -18,3 +18,4 @@ First, create a file named `questions.txt` in the same folder as the program. Ma
 ~~~~
 
 Then, run the program, and it will ask you all of the questions. It will also, optionally, keep track of data like your internet history and usage patterns.
+
